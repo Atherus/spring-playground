@@ -25,3 +25,12 @@ Demo project in spring boot to learn basics with simple connection on DB (postgr
     -   all POSTMAN request needs now Basic Auth with user / pass from application.properties
 
 
+## KeyCloak integration
+- To enable keycloack authentication
+    - lookup settings for server and realm in application.properties
+- SecurityConfig.class takes places instead of WebSecurityConfig.class 
+    - extending different Adapter, set extra beans for keycloak
+- Add @PreAuthorize - sets role to specify access on endpoint
+    - this can be done also with commented section in application.properties (but only for entire app, not on specific endpoint)
+    - to enable this functionality, additional annotation needs to be placed in DemoApplication.java
+        - *EnableGlobalMethodSecurity*

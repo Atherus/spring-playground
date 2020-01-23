@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -22,6 +24,7 @@ public class StudentEntity {
     private String description;
     // Default value for score
     private Double score = 3.0;
+    private BookEntity book;
 
     @Column
     // Must be set identification for entity
@@ -55,10 +58,9 @@ public class StudentEntity {
         this.surname = surname;
     }
 
-    // Size of column
-    @Column(length = 4000)
     @Min(0)
     @Max(5)
+    @Column(length = 4000)
     public String getDescription() {
         return description;
     }
@@ -78,5 +80,15 @@ public class StudentEntity {
 
     public void setScore(Double score) {
         this.score = score;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "BOOK_ID")
+    public BookEntity getBook() {
+        return book;
+    }
+
+    public void setBook(BookEntity book) {
+        this.book = book;
     }
 }
